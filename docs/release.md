@@ -71,6 +71,11 @@ cất trong kho bí mật của HVN, xoá khỏi máy cá nhân sau khi thêm.
 nhưng không đăng Release; tải artifact về Mac, mở thử, rồi chạy `spctl -a -vv "/Applications/HVN Remote Hub.app"` — kết
 quả phải là `accepted` và `source=Notarized Developer ID`.
 
+**Notarize lâu:** mỗi lần gửi Apple, workflow chờ tối đa 90 phút. Lần notarize đầu tiên của một tài khoản Apple
+Developer có thể mất vài giờ; các lần sau thường vài phút. Nếu hết giờ chờ, hồ sơ vẫn được Apple xử lý tiếp: xem trạng
+thái trên Mac bằng `xcrun notarytool history` (đăng nhập bằng cùng khoá API), đợi `Accepted` rồi chạy lại workflow. Với
+Release, xoá Release và tag rồi tạo lại.
+
 Lưu ý: chuyển từ ad-hoc sang Developer ID đổi danh tính ký, nên người dùng phải cấp lại quyền Ghi màn hình/Trợ năng
 một lần và tải bản Developer ID đầu tiên thủ công.
 

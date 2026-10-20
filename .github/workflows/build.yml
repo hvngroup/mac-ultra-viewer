@@ -39,7 +39,8 @@ jobs:
     name: Test, package & verify
     needs: checks
     runs-on: macos-26
-    timeout-minutes: 60
+    # Two notarizations of up to 90 minutes each, plus the build.
+    timeout-minutes: 210
     permissions:
       contents: write
     steps:
@@ -171,7 +172,7 @@ jobs:
         run: |
           ditto -c -k --keepParent "release/HVN Remote Hub.app" "$RUNNER_TEMP/notarize.zip"
           xcrun notarytool submit "$RUNNER_TEMP/notarize.zip" --keychain-profile hvn-notary \
-            --keychain "$RUNNER_TEMP/signing.keychain-db" --wait --timeout 30m
+            --keychain "$RUNNER_TEMP/signing.keychain-db" --wait --timeout 90m
           xcrun stapler staple "release/HVN Remote Hub.app"
           xcrun stapler validate "release/HVN Remote Hub.app"
           spctl --assess --type execute --verbose=2 "release/HVN Remote Hub.app"
@@ -190,7 +191,7 @@ jobs:
             codesign --force --timestamp --sign "$IDENTITY" "release/$ASSET.dmg"
             if [ "$NOTARIZED" = "true" ]; then
               xcrun notarytool submit "release/$ASSET.dmg" --keychain-profile hvn-notary \
-                --keychain "$RUNNER_TEMP/signing.keychain-db" --wait --timeout 30m
+                --keychain "$RUNNER_TEMP/signing.keychain-db" --wait --timeout 90m
               xcrun stapler staple "release/$ASSET.dmg"
               spctl --assess --type open --context context:primary-signature --verbose=2 "release/$ASSET.dmg"
             fi
