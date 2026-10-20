@@ -1,6 +1,6 @@
 # Plan — HVN Remote Hub for Mac v1.0.0
 
-- Trạng thái: **Phase 6 — phát hành 1.0.0** (PR tính năng đã merge 2026-10-20)
+- Trạng thái: **1.0.0 đã phát hành** (2026-10-20); đang phát hành **1.0.1** — bản đầu tiên ký Developer ID
 - Phạm vi: [brainstorm-261020-0956-hvn-ultraviewer.md](../reports/brainstorm-261020-0956-hvn-ultraviewer.md) (Cổng ① đã chốt)
 - Nhánh: `claude/clever-turing-ns95e6` → PR #1 (tính năng, đã merge) và PR phát hành vào `main`
 
@@ -11,7 +11,8 @@
 | 3 | Chuyển engine + app từ MacViewer; đổi định danh `vn.hvn.remotehub`; viết lại vỏ app (Launcher, menu, Giới thiệu, Trợ giúp, Cài đặt), tiếng Việt mặc định, brand (icon, logo, màu), kênh cập nhật HVN | Xong |
 | 4 | **Cổng ② CI**: `swift test`, đóng gói universal, `verify-bundle.sh`, DMG/zip/SHA-256 | Xong — xanh sau đổi tên (run 39424181116) |
 | 5 | **Cổng ③ Máy thật**: chủ sản phẩm chạy `docs/manual-test-checklist.md` | Xong — chủ sản phẩm xác nhận và merge PR #1 (2026-10-20) |
-| 6 | **Cổng ④ Phát hành** v1.0.0: PR phát hành riêng, Release trên GitHub UI | Đang làm |
+| 6 | **Cổng ④ Phát hành** v1.0.0: PR phát hành riêng, Release trên GitHub UI | Xong (2026-10-20, ký ad-hoc) |
+| 6.1 | v1.0.1: ký Developer ID + notarize trong workflow (PR #4), PR phát hành 1.0.1 | Đang làm |
 
 ## Tiêu chí nghiệm thu
 

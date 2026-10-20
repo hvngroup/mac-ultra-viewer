@@ -53,7 +53,7 @@ cất trong kho bí mật của HVN, xoá khỏi máy cá nhân sau khi thêm.
 |---|---|
 | `MACOS_CERTIFICATE_P12` | Chứng chỉ "Developer ID Application" dạng `.p12`, mã base64 |
 | `MACOS_CERTIFICATE_PASSWORD` | Mật khẩu file `.p12` |
-| `APPSTORE_API_KEY_P8` | Toàn bộ nội dung file `AuthKey_<KEY_ID>.p8` |
+| `APPSTORE_API_KEY_P8` | Toàn bộ nội dung file `AuthKey_<KEY_ID>.p8`, từ dòng `-----BEGIN PRIVATE KEY-----` đến hết `-----END PRIVATE KEY-----` (hoặc mã base64 của file: `base64 -i AuthKey_<KEY_ID>.p8 \| pbcopy`) |
 | `APPSTORE_API_KEY_ID` | Key ID |
 | `APPSTORE_API_ISSUER_ID` | Issuer ID |
 | `APPLE_ID`, `APPLE_APP_PASSWORD` | Phương án thay thế khoá API: Apple ID + app-specific password |

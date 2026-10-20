@@ -62,12 +62,8 @@ Kế hoạch chi tiết: [plans/261020-1227-hvn-protocol-multiplatform/plan.md](
 1. Tải `HVNRemoteHub-<phiên bản>.dmg` ở trang [Releases](https://github.com/hvngroup/mac-ultra-viewer/releases/latest).
 2. (Tuỳ chọn) So mã: `shasum -a 256 -c HVNRemoteHub-<phiên bản>.dmg.sha256`.
 3. Mở DMG, kéo **HVN Remote Hub** vào **Applications**.
-4. Bản ký ad-hoc bị Gatekeeper chặn ở lần mở đầu: bấm **Done**, vào **System Settings → Privacy & Security →
-   Open Anyway**. Hoặc chạy:
-
-   ```sh
-   xattr -dr com.apple.quarantine "/Applications/HVN Remote Hub.app"
-   ```
+4. Mở app. Từ bản 1.0.1, app được ký Developer ID và notarize nên mở bình thường. Bản 1.0.0 (ký ad-hoc) bị
+   Gatekeeper chặn ở lần mở đầu: bấm **Done**, vào **System Settings → Privacy & Security → Open Anyway**.
 
 Chi tiết từng bước: [docs/user-guide.md](docs/user-guide.md).
 

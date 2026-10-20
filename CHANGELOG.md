@@ -7,11 +7,15 @@ Khi phát hành, workflow **Build** lấy đúng mục của phiên bản tươn
 
 ## [Unreleased]
 
+## [1.0.1] - 2026-10-20
+
 ### Thay đổi
 
 - Bản phát hành được ký Developer ID của HVN GROUP và notarize với Apple: mở được ngay, không cần "Open Anyway",
-  và app tự cài bản cập nhật. Người dùng bản 1.0.0 (ký ad-hoc) tải bản này thủ công một lần và cấp lại quyền Ghi màn
-  hình, Trợ năng.
+  và từ bản này app tự cài các bản cập nhật sau.
+- Nâng cấp từ 1.0.0 (ký ad-hoc): bấm **Cập nhật lên 1.0.1**, app tải file DMG về Downloads; kéo app mới vào Applications
+  để thay bản cũ, rồi cấp lại quyền Ghi màn hình và Trợ năng một lần vì chữ ký của app đã đổi.
+- Hướng dẫn cài đặt (trong app và README) cập nhật theo bản đã ký.
 
 ## [1.0.0] - 2026-10-20
 
@@ -27,5 +31,6 @@ Khi phát hành, workflow **Build** lấy đúng mục của phiên bản tươn
 - Kiểm tra và cài bản mới từ GitHub Releases của `hvngroup/mac-ultra-viewer`.
 - Gói cài DMG, zip và mã SHA-256 cho mỗi bản build; ký Developer ID + notarize tự động khi repo có chứng chỉ.
 
-[Unreleased]: https://github.com/hvngroup/mac-ultra-viewer/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/hvngroup/mac-ultra-viewer/compare/v1.0.1...HEAD
+[1.0.1]: https://github.com/hvngroup/mac-ultra-viewer/compare/v1.0.0...v1.0.1
 [1.0.0]: https://github.com/hvngroup/mac-ultra-viewer/releases/tag/v1.0.0
