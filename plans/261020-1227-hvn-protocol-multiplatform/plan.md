@@ -1,6 +1,6 @@
 # Plan — Giao thức riêng của HVN và HVN Remote Hub đa nền tảng
 
-- Trạng thái: **Đã chọn hướng A** (2026-10-20); còn 2 câu hỏi mở trước khi bắt đầu fork (xem *Quyết định đã chốt*)
+- Trạng thái: **Cổng ① đã chốt** (2026-10-20) — hướng A1; chờ P0 (máy chủ thử nghiệm) và P1 (tạo repo fork)
 - Yêu cầu (2026-10-20): đổi tên thành HVN Remote Hub; hub làm ở 1.1.0; tham khảo RustDesk để có giao thức riêng cho HVN;
   sau đó làm bản Windows, iOS, Android.
 - Liên quan: [research-261020-1221-universal-remote-feasibility.md](../reports/research-261020-1221-universal-remote-feasibility.md)
@@ -64,8 +64,9 @@ mắt gấp và chấp nhận không có giao thức riêng.
 | Hướng kỹ thuật | **A — fork RustDesk** (client + server), đổi thương hiệu thành HVN Remote Hub |
 | Hạ tầng | Máy chủ ID/relay trên **HVN Cloud tại Việt Nam** |
 | Ký số Apple | HVN **đã có Apple Developer** → ký Developer ID + notarize cho macOS, phát hành iOS qua App Store/TestFlight |
-| Khách hàng mục tiêu | *Còn mở* — nội bộ hay bán như dịch vụ |
-| Giao diện Mac từ 2.0.0 | *Còn mở* — A1 (Flutter cho mọi nền tảng, khuyến nghị) hay A2 (giữ Swift) |
+| Khách hàng mục tiêu | **Nội bộ trước** (đội hỗ trợ HVN); bán như dịch vụ là quyết định sau, khi đó mới làm VAPT và mô hình tính phí |
+| Giao diện từ 2.0.0 | **A1 — Flutter cho mọi nền tảng**, kể cả macOS |
+| Tên miền máy chủ | **`connect.hvn.vn`** |
 
 ## Các phase của 2.0.0
 
@@ -75,8 +76,8 @@ mắt gấp và chấp nhận không có giao thức riêng.
 | P1 | Tạo fork `hvngroup/remote-hub` (từ `rustdesk/rustdesk`), `hvngroup/remote-hub-common` (từ `rustdesk/hbb_common`), `hvngroup/remote-hub-server` (từ `rustdesk/rustdesk-server`); thêm vào phiên agent | Chủ sản phẩm (GitHub UI) | 3 repo fork |
 | P2 | Đổi thương hiệu: `APP_NAME`, `ORG` (`vn.hvn`), `RENDEZVOUS_SERVERS`, `RS_PUB_KEY`, bundle/application ID `vn.hvn.remotehub` trên 5 nền tảng, icon + logo HVN, tiếng Việt mặc định, gỡ link cập nhật/tài trợ của RustDesk, ghi công + thông báo AGPL | Agent | Client nói chuyện với máy chủ HVN |
 | P3 | CI cho từng nền tảng: macOS (ký Developer ID + notarize), Windows (ký code signing), Android (APK/AAB), iOS (TestFlight) | Agent + chủ sản phẩm (secrets) | Bản build ký số trên 5 nền tảng |
-| P4 | Hub + UltraViewer: tích hợp theo A1 hoặc A2 | Agent | Một app HVN Remote Hub |
-| P5 | Cổng ③ trên máy thật từng nền tảng; VAPT bởi HVN Security nếu bán ra ngoài | Chủ sản phẩm, HVN Security | Biên bản kiểm thử |
+| P4 | Hub (danh bạ đa nền, mở TeamViewer/AnyDesk/RDP/VNC) viết trong Flutter; UltraViewer trên macOS bọc engine Swift `UltraViewerProtocol` thành plugin Flutter cho macOS; trên Windows hub mở UltraViewer chính hãng | Agent | Một app HVN Remote Hub |
+| P5 | Cổng ③ trên máy thật từng nền tảng (dùng nội bộ: chưa cần VAPT) | Chủ sản phẩm | Biên bản kiểm thử |
 | P6 | Phát hành 2.0.0: GitHub Releases, App Store, Google Play, công bố mã nguồn theo AGPL | Chủ sản phẩm | Bản phát hành |
 
 ## Việc chủ sản phẩm cần chuẩn bị
@@ -85,16 +86,21 @@ mắt gấp và chấp nhận không có giao thức riêng.
    `APPSTORE_API_KEY_P8`, `APPSTORE_API_KEY_ID`, `APPSTORE_API_ISSUER_ID`; xem `docs/release.md`). Ký Developer ID ngay từ
    bản đầu thì người dùng không phải "Open Anyway", app tự cài bản cập nhật, quyền macOS không bị hỏi lại sau mỗi lần cập
    nhật.
-2. P0: một VPS trên HVN Cloud (gợi ý 2 vCPU, 4 GB RAM, băng thông không giới hạn hoặc lớn, IP tĩnh) và một tên miền con,
-   ví dụ `connect.hvn.vn`.
+2. P0: một VPS trên HVN Cloud (gợi ý 2 vCPU, 4 GB RAM, băng thông lớn, IP tĩnh) và bản ghi DNS `connect.hvn.vn`.
 3. P1: tạo 3 repo fork rồi báo agent để thêm vào phiên.
 4. P3: chứng chỉ code signing cho Windows (EV hoặc OV, qua HVN Security/Sectigo), tài khoản Google Play Console.
 
+## Chuyển tiếp từ app Swift 1.x sang app Flutter 2.0 trên Mac
+
+- App Flutter 2.0 dùng **cùng bundle ID `vn.hvn.remotehub`**, cùng Team ID Developer ID và cùng tên file phát hành
+  `HVNRemoteHub-*.dmg` trên Releases của repo này (hoặc repo mới, kèm bản 1.x cuối trỏ sang). Như vậy bản 1.x tự cập nhật
+  lên 2.0 tại chỗ, người dùng không phải cài lại.
+- Hai bản lưu cài đặt khác nhau: bản 2.0 cần đọc lại danh sách ID gần đây (UserDefaults `HVNRemoteHub.*`) và mật khẩu
+  trong Keychain (`vn.hvn.remotehub.partner`) của bản 1.x, hoặc báo người dùng nhập lại.
+
 ## Câu hỏi còn mở
 
-- Khách hàng mục tiêu: nội bộ hay bán như dịch vụ? Câu trả lời quyết định quy mô máy chủ, mô hình tính phí và VAPT.
-- Giao diện Mac từ 2.0.0: A1 hay A2?
-- Tên miền cho máy chủ (`connect.hvn.vn` hay tên khác)?
+- Hub ở 1.1.0: làm trong app Swift như đã chốt, hay bỏ qua để làm thẳng trong Flutter ở 2.0 (tránh viết hai lần)?
 
 ---
 

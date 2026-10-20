@@ -10,7 +10,7 @@
 | Hạng mục | Giá trị gợi ý |
 |---|---|
 | Máy chủ | VPS Linux (Ubuntu 24.04 LTS), 2 vCPU, 4 GB RAM, 40 GB SSD, IP tĩnh; băng thông lớn vì relay mang toàn bộ hình ảnh khi không kết nối thẳng được |
-| Tên miền | `connect.hvn.vn` (bản ghi A → IP máy chủ) — chờ chủ sản phẩm chốt |
+| Tên miền | `connect.hvn.vn` (bản ghi A → IP máy chủ) — đã chốt |
 | Phần mềm | Docker + Docker Compose; image `rustdesk/rustdesk-server`, **ghim phiên bản** (bản mới nhất trên GitHub là `1.1.16`; kiểm tra tag tương ứng trên Docker Hub), không dùng `latest` |
 
 ## 2. Tường lửa
