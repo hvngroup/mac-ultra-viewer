@@ -7,7 +7,8 @@ Máy đối tác: ______ (Windows + UltraViewer phiên bản ______)
 ## Cài đặt
 
 - [ ] Mở `.dmg`, kéo app vào Applications; `shasum -a 256 -c` khớp file `.sha256`.
-- [ ] Lần mở đầu: Gatekeeper chặn → **Open Anyway** trong Privacy & Security mở được app.
+- [ ] Lần mở đầu: macOS chỉ hỏi xác nhận mở app tải từ Internet (không cần Open Anyway); `spctl -a -vv` báo
+  `accepted` và `source=Notarized Developer ID`.
 - [ ] Icon đỏ HVN đúng trên Dock, Launchpad, Finder.
 
 ## Điều khiển máy khác
@@ -47,7 +48,8 @@ Máy đối tác: ______ (Windows + UltraViewer phiên bản ______)
 ## Cập nhật
 
 - [ ] **Kiểm tra bản cập nhật…** báo "đang là bản mới nhất" (hoặc đúng bản mới khi có Release mới hơn).
-- [ ] Khi có bản mới hơn: nút **Cập nhật lên …** hiện; bản ad-hoc mở DMG trong Downloads.
+- [ ] Khi có bản mới hơn: nút **Cập nhật lên …** hiện; bản Developer ID tự cài và mở lại (bản ad-hoc mở DMG trong
+  Downloads).
 
 ## Kết luận
 

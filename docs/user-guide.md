@@ -13,10 +13,10 @@ cho người hỗ trợ sau khi bạn duyệt. Giao diện mặc định là ti�
 2. (Tuỳ chọn) Kiểm tra file tải về không bị thay đổi: đặt file `.sha256` cạnh file DMG rồi chạy
    `shasum -a 256 -c HVNRemoteHub-<phiên bản>.dmg.sha256` — kết quả phải là `OK`.
 3. Mở file DMG, kéo **HVN Remote Hub** vào thư mục **Applications**.
-4. Mở app lần đầu. Nếu macOS báo không mở được vì chưa xác minh nhà phát triển:
-   - bấm **Done** (không bấm Move to Trash);
-   - mở **System Settings → Privacy & Security**, kéo xuống, bấm **Open Anyway** cạnh dòng HVN Remote Hub;
-   - hoặc mở Terminal và chạy `xattr -dr com.apple.quarantine "/Applications/HVN Remote Hub.app"`.
+4. Mở app từ thư mục Applications. Từ bản 1.0.1, app được HVN GROUP ký và Apple kiểm duyệt (notarize): macOS chỉ hỏi
+   xác nhận mở app tải từ Internet, bấm **Open**.
+   Bản 1.0.0 ký ad-hoc: nếu macOS báo không mở được vì chưa xác minh nhà phát triển, bấm **Done** (không bấm Move to
+   Trash), mở **System Settings → Privacy & Security**, kéo xuống, bấm **Open Anyway** cạnh dòng HVN Remote Hub.
 
 Yêu cầu: macOS 14 Sonoma trở lên, máy Apple silicon hoặc Intel.
 
@@ -68,17 +68,17 @@ nối chỉ lưu ID, không bao giờ lưu mật khẩu. Xoá lịch sử hoặc
 App tự kiểm tra bản mới trên GitHub Releases của HVN GROUP (tắt được trong Cài đặt), hoặc chọn
 **HVN Remote Hub → Kiểm tra bản cập nhật…**. Khi có bản mới, nút **Cập nhật lên …** hiện ở thanh tiêu đề:
 
-- bản ký Developer ID: app tự tải, kiểm chữ ký, cài và mở lại;
-- bản ký ad-hoc (nội bộ): app tải file DMG về thư mục Downloads và mở ra; kéo app mới vào Applications để thay bản cũ.
+- từ bản 1.0.1 (ký Developer ID): app tự tải, kiểm chữ ký, cài và mở lại;
+- bản 1.0.0 (ký ad-hoc): app tải file DMG về thư mục Downloads và mở ra; kéo app mới vào Applications để thay bản cũ.
 
-Cập nhật sẽ ngắt các kết nối đang mở. Với bản ad-hoc, macOS có thể yêu cầu cấp lại quyền Ghi màn hình và Trợ năng sau
-khi cập nhật.
+Cập nhật sẽ ngắt các kết nối đang mở. Khi chuyển từ bản 1.0.0 lên 1.0.1, macOS yêu cầu cấp lại quyền Ghi màn hình và
+Trợ năng một lần, vì chữ ký của app đã đổi; các bản sau giữ nguyên quyền.
 
 ## 6. Xử lý sự cố
 
 | Hiện tượng | Cách xử lý |
 |---|---|
-| Không mở được app lần đầu | Làm theo mục 1, bước 4 (Open Anyway). |
+| Không mở được app lần đầu | Làm theo mục 1, bước 4. |
 | Máy kia không thấy màn hình Mac | Kiểm tra quyền Ghi màn hình; thoát hẳn app (⌘Q) rồi mở lại. |
 | Máy kia không điều khiển được Mac | Kiểm tra quyền Trợ năng và bạn đã chọn **Cho phép điều khiển**. |
 | Không kết nối được | Kiểm tra ID, mật khẩu và mạng; UltraViewer trên máy kia phải đang mở. |
