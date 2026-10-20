@@ -73,8 +73,8 @@ mắt gấp và chấp nhận không có giao thức riêng.
 | Phase | Việc | Ai làm | Đầu ra |
 |:-:|---|---|---|
 | P0 | Máy chủ thử nghiệm trên HVN Cloud: `hbbs` + `hbbr`, DNS, khoá ký máy chủ; đo độ trễ và tỉ lệ kết nối thẳng/relay bằng client RustDesk gốc | Hạ tầng HVN Cloud (runbook: [phase-01-server-pilot.md](phase-01-server-pilot.md)) | Máy chủ chạy, số đo |
-| P1 | Tạo fork `hvngroup/remote-hub` (từ `rustdesk/rustdesk`), `hvngroup/remote-hub-common` (từ `rustdesk/hbb_common`), `hvngroup/remote-hub-server` (từ `rustdesk/rustdesk-server`); thêm vào phiên agent | Chủ sản phẩm (GitHub UI) | 3 repo fork |
-| P2 | Đổi thương hiệu: `APP_NAME`, `ORG` (`vn.hvn`), `RENDEZVOUS_SERVERS`, `RS_PUB_KEY`, bundle/application ID `vn.hvn.remotehub` trên 5 nền tảng, icon + logo HVN, tiếng Việt mặc định, gỡ link cập nhật/tài trợ của RustDesk, ghi công + thông báo AGPL | Agent | Client nói chuyện với máy chủ HVN |
+| P1 | Fork `rustdesk/rustdesk` → **`hvngroup/rustdesk`** (xong 2026-10-20, đã thêm vào phiên agent). Fork `hbb_common`/`rustdesk-server` chưa cần (xem P2) | Chủ sản phẩm | Repo fork |
+| P2 | Đổi thương hiệu: `APP_NAME`, `ORG` (`vn.hvn`), `RENDEZVOUS_SERVERS`, `RS_PUB_KEY`, bundle/application ID `vn.hvn.remotehub` trên 5 nền tảng, icon + logo HVN, tiếng Việt mặc định, gỡ link cập nhật/tài trợ của RustDesk, ghi công + thông báo AGPL | Agent ([phase-02-rebrand-fork.md](phase-02-rebrand-fork.md)) | Client nói chuyện với máy chủ HVN |
 | P3 | CI cho từng nền tảng: macOS (ký Developer ID + notarize), Windows (ký code signing), Android (APK/AAB), iOS (TestFlight) | Agent + chủ sản phẩm (secrets) | Bản build ký số trên 5 nền tảng |
 | P4 | Hub (danh bạ đa nền, mở TeamViewer/AnyDesk/RDP/VNC) viết trong Flutter; UltraViewer trên macOS bọc engine Swift `UltraViewerProtocol` thành plugin Flutter cho macOS; trên Windows hub mở UltraViewer chính hãng | Agent | Một app HVN Remote Hub |
 | P5 | Cổng ③ trên máy thật từng nền tảng (dùng nội bộ: chưa cần VAPT) | Chủ sản phẩm | Biên bản kiểm thử |
@@ -87,7 +87,7 @@ mắt gấp và chấp nhận không có giao thức riêng.
    bản đầu thì người dùng không phải "Open Anyway", app tự cài bản cập nhật, quyền macOS không bị hỏi lại sau mỗi lần cập
    nhật.
 2. P0: một VPS trên HVN Cloud (gợi ý 2 vCPU, 4 GB RAM, băng thông lớn, IP tĩnh) và bản ghi DNS `connect.hvn.vn`.
-3. P1: tạo 3 repo fork rồi báo agent để thêm vào phiên.
+3. Bật GitHub Actions trên `hvngroup/rustdesk` để CI chứng minh build của bản fork.
 4. P3: chứng chỉ code signing cho Windows (EV hoặc OV, qua HVN Security/Sectigo), tài khoản Google Play Console.
 
 ## Chuyển tiếp từ app Swift 1.x sang app Flutter 2.0 trên Mac
