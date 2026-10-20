@@ -62,7 +62,7 @@ kythuat@hvn.vn) và tự kiểm tra bản mới trên Releases của HVN.
 | Bundle ID | `vn.hvn.ultraviewer` |
 | Module Swift | `HVNUltraViewer` (app) + `UltraViewerProtocol` (engine) + `CZstd`, `CG722` (C) |
 | Build | **Swift Package Manager** + `scripts/package-app.sh` lắp `.app` (giữ cách đã chạy xanh của bản gốc) |
-| Phiên bản | `app.env` (`APP_VERSION`, `APP_BUILD`) — nguồn duy nhất; tag `vX.Y.Z` phải khớp |
+| Phiên bản | `version.conf` (`APP_VERSION`, `APP_BUILD`) — nguồn duy nhất; tag `vX.Y.Z` phải khớp |
 | CI / phát hành | Một workflow **Build** theo `ab-app-release`: test → đóng gói → kiểm tra bundle → DMG/zip/SHA-256 → Release từ CHANGELOG |
 | Cập nhật | `UpdateChecker` của bản gốc, trỏ về Releases của HVN; tự cài khi app ký Developer ID, bản ad-hoc mở DMG |
 | Brand | Icon vẽ bằng script từ hình học logo HVN chuẩn; logo trong app render từ SVG chuẩn (không để AI vẽ) |
@@ -102,3 +102,15 @@ Better approaches: none — B và C tốn hơn mà không thêm giá trị cho n
 ---
 
 HVN GROUP · hvn.vn
+
+## Nhật ký quyết định
+
+- **2026-10-20 — đổi tên trước khi phát hành 1.0.0.** Sau báo cáo
+  [research-261020-1221-universal-remote-feasibility.md](research-261020-1221-universal-remote-feasibility.md), chủ sản
+  phẩm chọn tên **HVN Remote Hub** (bundle ID `vn.hvn.remotehub`, module `HVNRemoteHub`, file phát hành
+  `HVNRemoteHub-*.dmg`), thay cho "HVN UltraViewer". Tên mới không chứa thương hiệu bên thứ ba (giảm rủi ro 1 ở trên) và
+  hợp với hướng đa nền tảng. Phạm vi 1.0.0 giữ nguyên; phần hub (danh bạ đa nền, mở TeamViewer/AnyDesk/RDP/VNC) để
+  sang 1.1.0. Giao thức riêng của HVN (tham khảo RustDesk) và các bản Windows/iOS/Android lập kế hoạch tại
+  [../261020-1227-hvn-protocol-multiplatform/plan.md](../261020-1227-hvn-protocol-multiplatform/plan.md).
+- **2026-10-20 — bỏ bản 1.1.0.** Đã chọn Flutter cho mọi nền tảng ở 2.0, nên phần hub làm thẳng trong app Flutter thay
+  vì viết bằng Swift rồi viết lại. App Swift dừng ở dòng 1.0.x (bản vá lỗi) cho đến khi 2.0 thay thế.
