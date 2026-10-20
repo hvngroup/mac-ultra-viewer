@@ -53,8 +53,7 @@ dùng Wine và không chạy mã Windows nào.
 | Bản | Nội dung |
 |---|---|
 | 1.0.0 | Kết nối và chia sẻ màn hình với máy chạy UltraViewer (macOS) |
-| 1.1.0 | Hub: một danh bạ máy, mở phiên TeamViewer, AnyDesk (client chính hãng), RDP và VNC |
-| 2.x | HVN Connect — giao thức và máy chủ riêng của HVN; bản Windows, Android, iOS |
+| 2.0.0 | App Flutter cho macOS, Windows, Android, iOS: HVN Connect (giao thức và máy chủ riêng của HVN) và hub — một danh bạ máy, mở phiên TeamViewer, AnyDesk (client chính hãng), RDP, VNC, UltraViewer |
 
 Kế hoạch chi tiết: [plans/261020-1227-hvn-protocol-multiplatform/plan.md](plans/261020-1227-hvn-protocol-multiplatform/plan.md).
 

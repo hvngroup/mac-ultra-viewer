@@ -1,7 +1,7 @@
 # Plan — Giao thức riêng của HVN và HVN Remote Hub đa nền tảng
 
 - Trạng thái: **Cổng ① đã chốt** (2026-10-20) — hướng A1; chờ P0 (máy chủ thử nghiệm) và P1 (tạo repo fork)
-- Yêu cầu (2026-10-20): đổi tên thành HVN Remote Hub; hub làm ở 1.1.0; tham khảo RustDesk để có giao thức riêng cho HVN;
+- Yêu cầu (2026-10-20): đổi tên thành HVN Remote Hub; hub làm thẳng trong Flutter 2.0 (bỏ bản 1.1.0); tham khảo RustDesk để có giao thức riêng cho HVN;
   sau đó làm bản Windows, iOS, Android.
 - Liên quan: [research-261020-1221-universal-remote-feasibility.md](../reports/research-261020-1221-universal-remote-feasibility.md)
 
@@ -10,9 +10,8 @@
 | Bản | Nội dung | Nền tảng |
 |---|---|---|
 | **1.0.0** | HVN Remote Hub for Mac: engine UltraViewer gốc, brand HVN, tiếng Việt mặc định | macOS |
-| **1.1.0** | Hub: danh bạ máy đa nền; mở TeamViewer, AnyDesk (client chính hãng), RDP, VNC; nhận biết app đã cài | macOS |
-| **2.0.0** | **HVN Connect** — giao thức riêng: máy chủ ID/relay của HVN đặt trên HVN Cloud, kết nối mã hoá đầu-cuối; app Mac điều khiển và được điều khiển qua HVN Connect | macOS + máy chủ |
-| **2.x** | Bản Windows, Android, iOS dùng chung lõi HVN Connect; hub trên từng nền tảng | Windows, Android, iOS |
+| **2.0.0** | App Flutter (fork RustDesk): **HVN Connect** — máy chủ ID/relay của HVN trên `connect.hvn.vn`, mã hoá đầu-cuối — và **hub** (danh bạ đa nền, mở TeamViewer/AnyDesk/RDP/VNC, UltraViewer) | macOS, Windows, Android, iOS + máy chủ |
+| 2.x | Hoàn thiện theo phản hồi nội bộ; cân nhắc bán như dịch vụ | Mọi nền tảng |
 
 ## RustDesk — những gì tham khảo được (đã kiểm tra mã nguồn 2026-10-20)
 
@@ -67,6 +66,7 @@ mắt gấp và chấp nhận không có giao thức riêng.
 | Khách hàng mục tiêu | **Nội bộ trước** (đội hỗ trợ HVN); bán như dịch vụ là quyết định sau, khi đó mới làm VAPT và mô hình tính phí |
 | Giao diện từ 2.0.0 | **A1 — Flutter cho mọi nền tảng**, kể cả macOS |
 | Tên miền máy chủ | **`connect.hvn.vn`** |
+| Hub | **Bỏ bản 1.1.0 (Swift)**; hub làm thẳng trong app Flutter 2.0 |
 
 ## Các phase của 2.0.0
 
@@ -97,10 +97,6 @@ mắt gấp và chấp nhận không có giao thức riêng.
   lên 2.0 tại chỗ, người dùng không phải cài lại.
 - Hai bản lưu cài đặt khác nhau: bản 2.0 cần đọc lại danh sách ID gần đây (UserDefaults `HVNRemoteHub.*`) và mật khẩu
   trong Keychain (`vn.hvn.remotehub.partner`) của bản 1.x, hoặc báo người dùng nhập lại.
-
-## Câu hỏi còn mở
-
-- Hub ở 1.1.0: làm trong app Swift như đã chốt, hay bỏ qua để làm thẳng trong Flutter ở 2.0 (tránh viết hai lần)?
 
 ---
 

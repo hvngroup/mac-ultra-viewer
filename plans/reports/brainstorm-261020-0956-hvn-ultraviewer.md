@@ -112,3 +112,5 @@ HVN GROUP · hvn.vn
   hợp với hướng đa nền tảng. Phạm vi 1.0.0 giữ nguyên; phần hub (danh bạ đa nền, mở TeamViewer/AnyDesk/RDP/VNC) để
   sang 1.1.0. Giao thức riêng của HVN (tham khảo RustDesk) và các bản Windows/iOS/Android lập kế hoạch tại
   [../261020-1227-hvn-protocol-multiplatform/plan.md](../261020-1227-hvn-protocol-multiplatform/plan.md).
+- **2026-10-20 — bỏ bản 1.1.0.** Đã chọn Flutter cho mọi nền tảng ở 2.0, nên phần hub làm thẳng trong app Flutter thay
+  vì viết bằng Swift rồi viết lại. App Swift dừng ở dòng 1.0.x (bản vá lỗi) cho đến khi 2.0 thay thế.
