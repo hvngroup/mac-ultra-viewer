@@ -139,7 +139,19 @@ jobs:
           keychain="$RUNNER_TEMP/signing.keychain-db"
           if [ -n "$APPSTORE_API_KEY_P8" ] && [ -n "$APPSTORE_API_KEY_ID" ] && [ -n "$APPSTORE_API_ISSUER_ID" ]; then
             key_path="$RUNNER_TEMP/AuthKey_${APPSTORE_API_KEY_ID}.p8"
-            printf '%s\n' "$APPSTORE_API_KEY_P8" > "$key_path"
+            # Accept the .p8 file's text or its base64 (as for the .p12), and rebuild the
+            # PEM so CRLF, lost line breaks or literal "\n" from pasting do not break it.
+            key="$APPSTORE_API_KEY_P8"
+            case "$key" in
+              *"BEGIN PRIVATE KEY"*) ;;
+              *) key=$(printf '%s' "$key" | tr -d ' \r\n' | base64 -D 2>/dev/null || true) ;;
+            esac
+            body=$(printf '%s' "$key" | sed -e 's/\\n/ /g' -e 's/-----[A-Z ]*PRIVATE KEY-----//g' | tr -d ' \t\r\n')
+            if [ -z "$body" ] || ! printf '%s' "$body" | base64 -D >/dev/null 2>&1; then
+              echo "::error::APPSTORE_API_KEY_P8 is neither the text of AuthKey_<KEY_ID>.p8 (from -----BEGIN PRIVATE KEY----- to -----END PRIVATE KEY-----) nor its base64." >&2
+              exit 1
+            fi
+            { echo "-----BEGIN PRIVATE KEY-----"; printf '%s\n' "$body" | fold -w 64; echo "-----END PRIVATE KEY-----"; } > "$key_path"
             xcrun notarytool store-credentials hvn-notary --keychain "$keychain" \
               --key "$key_path" --key-id "$APPSTORE_API_KEY_ID" --issuer "$APPSTORE_API_ISSUER_ID"
             rm -f "$key_path"
