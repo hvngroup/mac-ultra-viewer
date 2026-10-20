@@ -1,17 +1,17 @@
 # Plan — HVN Remote Hub for Mac v1.0.0
 
-- Trạng thái: **Phase 4 — chờ CI xanh sau khi đổi tên thành HVN Remote Hub** (Cổng ③ phải chạy lại)
+- Trạng thái: **Phase 6 — phát hành 1.0.0** (PR tính năng đã merge 2026-10-20)
 - Phạm vi: [brainstorm-261020-0956-hvn-ultraviewer.md](../reports/brainstorm-261020-0956-hvn-ultraviewer.md) (Cổng ① đã chốt)
-- Nhánh: `claude/clever-turing-ns95e6` → PR nháp vào `main`
+- Nhánh: `claude/clever-turing-ns95e6` → PR #1 (tính năng, đã merge) và PR phát hành vào `main`
 
 | Phase | Việc | Trạng thái |
 |:-:|---|---|
 | 0–1 | Brief, chốt tên/bundle ID/phạm vi/ký số, tạo `main` | Xong |
 | 2 | Khung: `Package.swift`, `version.conf`, scripts, workflow Build, docs, CHANGELOG, SECURITY, mẫu GitHub | Xong |
 | 3 | Chuyển engine + app từ MacViewer; đổi định danh `vn.hvn.remotehub`; viết lại vỏ app (Launcher, menu, Giới thiệu, Trợ giúp, Cài đặt), tiếng Việt mặc định, brand (icon, logo, màu), kênh cập nhật HVN | Xong |
-| 4 | **Cổng ② CI**: `swift test`, đóng gói universal, `verify-bundle.sh`, DMG/zip/SHA-256 | Xanh với tên cũ (run 39406947751); chờ chạy lại sau đổi tên |
-| 5 | **Cổng ③ Máy thật**: chủ sản phẩm chạy `docs/manual-test-checklist.md` | Đạt với tên cũ (2026-10-20); chạy lại với bản đổi tên |
-| 6 | **Cổng ④ Phát hành** v1.0.0: PR phát hành riêng, Release trên GitHub UI | Chưa |
+| 4 | **Cổng ② CI**: `swift test`, đóng gói universal, `verify-bundle.sh`, DMG/zip/SHA-256 | Xong — xanh sau đổi tên (run 39424181116) |
+| 5 | **Cổng ③ Máy thật**: chủ sản phẩm chạy `docs/manual-test-checklist.md` | Xong — chủ sản phẩm xác nhận và merge PR #1 (2026-10-20) |
+| 6 | **Cổng ④ Phát hành** v1.0.0: PR phát hành riêng, Release trên GitHub UI | Đang làm |
 
 ## Tiêu chí nghiệm thu
 
