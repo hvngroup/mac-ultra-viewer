@@ -7,6 +7,10 @@ on:
   pull_request:
   workflow_dispatch:
 
+env:
+  # HVN GROUP's Apple Developer Team ID. Not secret: Apple prints it in every signature.
+  APPLE_TEAM_ID: TVZNQ5W8NG
+
 concurrency:
   group: build-${{ github.ref }}
   cancel-in-progress: ${{ !startsWith(github.ref, 'refs/tags/') }}
@@ -84,7 +88,8 @@ jobs:
 
       - name: Import Developer ID certificate
         id: cert
-        if: startsWith(github.ref, 'refs/tags/v')
+        # A manual run rehearses signing and notarization without publishing anything.
+        if: startsWith(github.ref, 'refs/tags/v') || github.event_name == 'workflow_dispatch'
         env:
           MACOS_CERTIFICATE_P12: ${{ secrets.MACOS_CERTIFICATE_P12 }}
           MACOS_CERTIFICATE_PASSWORD: ${{ secrets.MACOS_CERTIFICATE_PASSWORD }}
@@ -104,9 +109,10 @@ jobs:
           security set-key-partition-list -S apple-tool:,apple: -s -k "$keychain_password" "$keychain"
           security list-keychains -d user -s "$keychain" $(security list-keychains -d user | tr -d '"')
           rm -f "$RUNNER_TEMP/cert.p12"
-          identity="$(security find-identity -v -p codesigning "$keychain" | awk '/Developer ID Application/{print $2; exit}')"
+          identity="$(security find-identity -v -p codesigning "$keychain" \
+            | awk -v team="($APPLE_TEAM_ID)" '/Developer ID Application/ && index($0, team) {print $2; exit}')"
           if [ -z "$identity" ]; then
-            echo "::error::No 'Developer ID Application' identity found in the certificate." >&2
+            echo "::error::No 'Developer ID Application' identity for team $APPLE_TEAM_ID in the certificate." >&2
             exit 1
           fi
           echo "identity=$identity" >> "$GITHUB_OUTPUT"
@@ -117,6 +123,7 @@ jobs:
           codesign --force --options runtime --timestamp \
             --sign "${{ steps.cert.outputs.identity }}" "release/HVN Remote Hub.app"
           codesign --verify --deep --strict --verbose=2 "release/HVN Remote Hub.app"
+          codesign -dv "release/HVN Remote Hub.app" 2>&1 | grep -qx "TeamIdentifier=$APPLE_TEAM_ID"
 
       - name: Configure notarization
         id: notary
@@ -127,7 +134,6 @@ jobs:
           APPSTORE_API_ISSUER_ID: ${{ secrets.APPSTORE_API_ISSUER_ID }}
           APPLE_ID: ${{ secrets.APPLE_ID }}
           APPLE_APP_PASSWORD: ${{ secrets.APPLE_APP_PASSWORD }}
-          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
         run: |
           # Prefer an App Store Connect API key; fall back to Apple ID + app-specific password.
           keychain="$RUNNER_TEMP/signing.keychain-db"
@@ -137,12 +143,14 @@ jobs:
             xcrun notarytool store-credentials hvn-notary --keychain "$keychain" \
               --key "$key_path" --key-id "$APPSTORE_API_KEY_ID" --issuer "$APPSTORE_API_ISSUER_ID"
             rm -f "$key_path"
-          elif [ -n "$APPLE_ID" ] && [ -n "$APPLE_APP_PASSWORD" ] && [ -n "$APPLE_TEAM_ID" ]; then
+          elif [ -n "$APPLE_ID" ] && [ -n "$APPLE_APP_PASSWORD" ]; then
             xcrun notarytool store-credentials hvn-notary --keychain "$keychain" \
               --apple-id "$APPLE_ID" --password "$APPLE_APP_PASSWORD" --team-id "$APPLE_TEAM_ID"
           else
-            echo "::notice::Notarization secrets missing; skipping notarization."
-            exit 0
+            # Gatekeeper blocks a downloaded app that is signed but not notarized, so a
+            # Developer ID build without notarization would be worse than an ad-hoc one.
+            echo "::error::A Developer ID certificate is set but the notarization secrets are missing." >&2
+            exit 1
           fi
           echo "enabled=true" >> "$GITHUB_OUTPUT"
 
@@ -153,6 +161,8 @@ jobs:
           xcrun notarytool submit "$RUNNER_TEMP/notarize.zip" --keychain-profile hvn-notary \
             --keychain "$RUNNER_TEMP/signing.keychain-db" --wait --timeout 30m
           xcrun stapler staple "release/HVN Remote Hub.app"
+          xcrun stapler validate "release/HVN Remote Hub.app"
+          spctl --assess --type execute --verbose=2 "release/HVN Remote Hub.app"
 
       - name: Verify bundle
         run: scripts/verify-bundle.sh "release/HVN Remote Hub.app" arm64 x86_64
@@ -170,6 +180,7 @@ jobs:
               xcrun notarytool submit "release/$ASSET.dmg" --keychain-profile hvn-notary \
                 --keychain "$RUNNER_TEMP/signing.keychain-db" --wait --timeout 30m
               xcrun stapler staple "release/$ASSET.dmg"
+              spctl --assess --type open --context context:primary-signature --verbose=2 "release/$ASSET.dmg"
             fi
           fi
           cd release

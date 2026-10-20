@@ -7,6 +7,12 @@ Khi phát hành, workflow **Build** lấy đúng mục của phiên bản tươn
 
 ## [Unreleased]
 
+### Thay đổi
+
+- Bản phát hành được ký Developer ID của HVN GROUP và notarize với Apple: mở được ngay, không cần "Open Anyway",
+  và app tự cài bản cập nhật. Người dùng bản 1.0.0 (ký ad-hoc) tải bản này thủ công một lần và cấp lại quyền Ghi màn
+  hình, Trợ năng.
+
 ## [1.0.0] - 2026-10-20
 
 ### Thêm mới
