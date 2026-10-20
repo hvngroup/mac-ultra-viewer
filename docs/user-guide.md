@@ -45,8 +45,10 @@ nối chỉ lưu ID, không bao giờ lưu mật khẩu. Xoá lịch sử hoặc
    | **Ghi màn hình** (Screen Recording) | Cho máy kia xem màn hình Mac |
    | **Trợ năng** (Accessibility) | Cho máy kia điều khiển bàn phím, chuột của Mac |
 
-   Kéo biểu tượng app trong cửa sổ hướng dẫn vào danh sách của System Settings rồi bật công tắc. Sau khi cấp quyền Ghi
-   màn hình, thoát và mở lại app nếu quyền vẫn hiện là chưa có.
+   Bấm **Mở Cài đặt** ở từng quyền: macOS hỏi quyền, HVN Remote Hub xuất hiện trong danh sách của System Settings, bạn
+   bật công tắc cạnh app. Nếu vẫn không thấy app trong danh sách, kéo biểu tượng app trong cửa sổ hướng dẫn vào danh sách.
+   Sau khi cấp quyền Ghi màn hình, thoát và mở lại app nếu quyền vẫn hiện là chưa có.
+   Luôn mở app từ thư mục **Applications**: bản mở thẳng từ file DMG hoặc thư mục Downloads sẽ mất quyền khi chuyển chỗ.
 3. Đọc **ID** và **mật khẩu** của Mac cho người cần kết nối. Họ nhập vào UltraViewer trên máy của họ.
 4. Khi có yêu cầu, chọn **Cho phép xem** hoặc **Cho phép điều khiển**, hay **Từ chối**.
 5. Trong phiên, menu ở góc trên cho phép bật/tắt quyền điều khiển, **Kết thúc phiên truy cập** hoặc **Tạm dừng truy cập

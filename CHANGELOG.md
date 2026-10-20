@@ -7,6 +7,8 @@ Khi phát hành, workflow **Build** lấy đúng mục của phiên bản tươn
 
 ## [Unreleased]
 
+## [1.0.0] - 2026-10-20
+
 ### Thêm mới
 
 - Ứng dụng HVN Remote Hub for Mac đầu tiên: điều khiển máy tính đang chạy UltraViewer bằng ID và mật khẩu, chia sẻ
@@ -19,4 +21,5 @@ Khi phát hành, workflow **Build** lấy đúng mục của phiên bản tươn
 - Kiểm tra và cài bản mới từ GitHub Releases của `hvngroup/mac-ultra-viewer`.
 - Gói cài DMG, zip và mã SHA-256 cho mỗi bản build; ký Developer ID + notarize tự động khi repo có chứng chỉ.
 
-[Unreleased]: https://github.com/hvngroup/mac-ultra-viewer/commits/main
+[Unreleased]: https://github.com/hvngroup/mac-ultra-viewer/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/hvngroup/mac-ultra-viewer/releases/tag/v1.0.0
