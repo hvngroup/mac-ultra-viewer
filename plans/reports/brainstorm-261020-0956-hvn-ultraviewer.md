@@ -62,7 +62,7 @@ kythuat@hvn.vn) và tự kiểm tra bản mới trên Releases của HVN.
 | Bundle ID | `vn.hvn.ultraviewer` |
 | Module Swift | `HVNUltraViewer` (app) + `UltraViewerProtocol` (engine) + `CZstd`, `CG722` (C) |
 | Build | **Swift Package Manager** + `scripts/package-app.sh` lắp `.app` (giữ cách đã chạy xanh của bản gốc) |
-| Phiên bản | `app.env` (`APP_VERSION`, `APP_BUILD`) — nguồn duy nhất; tag `vX.Y.Z` phải khớp |
+| Phiên bản | `version.conf` (`APP_VERSION`, `APP_BUILD`) — nguồn duy nhất; tag `vX.Y.Z` phải khớp |
 | CI / phát hành | Một workflow **Build** theo `ab-app-release`: test → đóng gói → kiểm tra bundle → DMG/zip/SHA-256 → Release từ CHANGELOG |
 | Cập nhật | `UpdateChecker` của bản gốc, trỏ về Releases của HVN; tự cài khi app ký Developer ID, bản ad-hoc mở DMG |
 | Brand | Icon vẽ bằng script từ hình học logo HVN chuẩn; logo trong app render từ SVG chuẩn (không để AI vẽ) |

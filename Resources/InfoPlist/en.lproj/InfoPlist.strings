@@ -1,0 +1,2 @@
+/* Privacy prompts macOS shows on behalf of HVN UltraViewer. */
+"NSLocalNetworkUsageDescription" = "HVN UltraViewer connects directly to computers on your local network when that is faster than the relay.";
