@@ -1,4 +1,4 @@
-# Phát hành HVN UltraViewer
+# Phát hành HVN Remote Hub
 
 ## Quy trình (Cổng ④)
 
@@ -11,7 +11,7 @@
 3. **Sau khi merge**, chủ sản phẩm tạo Release trên GitHub: *Releases → Draft a new release* → tag mới `vX.Y.Z`,
    target **`main`**, để trống mô tả, không bấm "Generate release notes" → **Publish**.
 4. Workflow của tag: kiểm tag khớp `APP_VERSION` → test → đóng gói → (ký Developer ID + notarize nếu có secrets) →
-   kiểm tra bundle → đính kèm `HVNUltraViewer-X.Y.Z.dmg`, `.zip`, `.sha256`, `SHA256SUMS.txt` và mô tả từ CHANGELOG.
+   kiểm tra bundle → đính kèm `HVNRemoteHub-X.Y.Z.dmg`, `.zip`, `.sha256`, `SHA256SUMS.txt` và mô tả từ CHANGELOG.
 5. Kiểm tra Release: tag trỏ đúng commit merge; đủ file; `shasum -a 256 -c SHA256SUMS.txt` khớp; `Info.plist` trong zip
    đúng `CFBundleShortVersionString` và `CFBundleVersion`.
 
@@ -21,7 +21,7 @@ Sửa/đăng lại Release cũ không dời tag và không chạy lại workflow
 ## Tên file và cập nhật trong app
 
 `UpdateChecker` đọc `https://api.github.com/repos/hvngroup/mac-ultra-viewer/releases/latest`, bỏ qua bản nháp/pre-release
-và chọn file `HVNUltraViewer-*.dmg` tải từ `github.com`. Giữ đúng tên file này, nếu không app sẽ chỉ mở trang Release.
+và chọn file `HVNRemoteHub-*.dmg` tải từ `github.com`. Giữ đúng tên file này, nếu không app sẽ chỉ mở trang Release.
 
 Repo phải **công khai** (hoặc Release công khai) để app của người dùng đọc được thông tin phiên bản.
 

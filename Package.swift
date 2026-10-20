@@ -2,12 +2,12 @@
 import PackageDescription
 
 let package = Package(
-    name: "HVNUltraViewer",
+    name: "HVNRemoteHub",
     defaultLocalization: "vi",
     platforms: [.macOS(.v14)],
     products: [
         .library(name: "UltraViewerProtocol", targets: ["UltraViewerProtocol"]),
-        .executable(name: "HVNUltraViewer", targets: ["HVNUltraViewer"]),
+        .executable(name: "HVNRemoteHub", targets: ["HVNRemoteHub"]),
     ],
     targets: [
         .target(
@@ -43,9 +43,9 @@ let package = Package(
         ),
         .target(name: "UltraViewerProtocol", dependencies: ["CZstd", "CG722"],
                 resources: [.copy("Resources/8bit.dat")]),
-        .executableTarget(name: "HVNUltraViewer", dependencies: ["UltraViewerProtocol"],
+        .executableTarget(name: "HVNRemoteHub", dependencies: ["UltraViewerProtocol"],
                           resources: [.process("Resources")]),
         .testTarget(name: "UltraViewerProtocolTests", dependencies: ["UltraViewerProtocol"]),
-        .testTarget(name: "HVNUltraViewerTests", dependencies: ["HVNUltraViewer"]),
+        .testTarget(name: "HVNRemoteHubTests", dependencies: ["HVNRemoteHub"]),
     ]
 )

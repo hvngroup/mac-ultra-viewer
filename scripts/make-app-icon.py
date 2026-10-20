@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the macOS app icon set for HVN UltraViewer.
+"""Build the macOS app icon set for HVN Remote Hub.
 
 Usage:
   python3 scripts/make-app-icon.py              # draw the built-in HVN brand artwork

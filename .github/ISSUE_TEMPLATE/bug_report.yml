@@ -45,7 +45,7 @@ body:
     id: version
     attributes:
       label: Phiên bản app
-      description: Xem ở menu HVN UltraViewer → Giới thiệu HVN UltraViewer.
+      description: Xem ở menu HVN Remote Hub → Giới thiệu HVN Remote Hub.
       placeholder: "1.0.0 (1)"
     validations:
       required: true

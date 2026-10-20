@@ -1,6 +1,6 @@
 # Changelog
 
-Mọi thay đổi đáng chú ý của HVN UltraViewer được ghi tại đây. Định dạng theo
+Mọi thay đổi đáng chú ý của HVN Remote Hub được ghi tại đây. Định dạng theo
 [Keep a Changelog](https://keepachangelog.com/vi/1.1.0/), phiên bản theo [Semantic Versioning](https://semver.org/lang/vi/).
 
 Khi phát hành, workflow **Build** lấy đúng mục của phiên bản tương ứng trong file này làm mô tả cho GitHub Release.
@@ -9,7 +9,7 @@ Khi phát hành, workflow **Build** lấy đúng mục của phiên bản tươn
 
 ### Thêm mới
 
-- Ứng dụng HVN UltraViewer for Mac đầu tiên: điều khiển máy tính đang chạy UltraViewer bằng ID và mật khẩu, chia sẻ
+- Ứng dụng HVN Remote Hub for Mac đầu tiên: điều khiển máy tính đang chạy UltraViewer bằng ID và mật khẩu, chia sẻ
   máy Mac sau khi duyệt từng yêu cầu, chat, chia sẻ clipboard, âm thanh máy xa, chụp vùng màn hình có chú thích và quay
   video — dựa trên engine của MacViewer (MIT).
 - Nhận diện HVN GROUP: icon đỏ `#EA4445`, logo HVN GROUP trong cửa sổ chính và cửa sổ Giới thiệu, màu nhấn brand.

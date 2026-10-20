@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Build "release/HVN UltraViewer.app" from the Swift package. No Windows code
+# Build "release/HVN Remote Hub.app" from the Swift package. No Windows code
 # is executed or bundled.
 #
 # Usage: scripts/package-app.sh [release|debug]
@@ -22,8 +22,8 @@ fi
 : "${APP_VERSION:?version.conf must set APP_VERSION}"
 : "${APP_BUILD:?version.conf must set APP_BUILD}"
 
-product="HVNUltraViewer"
-app_name="HVN UltraViewer"
+product="HVNRemoteHub"
+app_name="HVN Remote Hub"
 output="$root/release"
 app="$output/$app_name.app"
 mkdir -p "$output"
@@ -70,8 +70,8 @@ cp Resources/Brand/hvn-logo-color.png Resources/Brand/hvn-logo-white.png "$resou
 cp docs/user-guide.md "$resources/user-guide.md"
 
 licenses="$resources/Licenses"
-mkdir -p "$licenses/HVN UltraViewer" "$licenses/Zstandard" "$licenses/G722"
-cp LICENSE THIRD_PARTY_NOTICES.md "$licenses/HVN UltraViewer/"
+mkdir -p "$licenses/HVN Remote Hub" "$licenses/Zstandard" "$licenses/G722"
+cp LICENSE THIRD_PARTY_NOTICES.md "$licenses/HVN Remote Hub/"
 cp ThirdParty/zstd/LICENSE ThirdParty/zstd/COPYING "$licenses/Zstandard/"
 cp ThirdParty/g722/LICENSE ThirdParty/g722/WEBRTC_LICENSE "$licenses/G722/"
 
@@ -81,7 +81,7 @@ cat > "$contents/Info.plist" <<PLIST
 <plist version="1.0">
 <dict>
   <key>CFBundleExecutable</key><string>$product</string>
-  <key>CFBundleIdentifier</key><string>vn.hvn.ultraviewer</string>
+  <key>CFBundleIdentifier</key><string>vn.hvn.remotehub</string>
   <key>CFBundleName</key><string>$app_name</string>
   <key>CFBundleDisplayName</key><string>$app_name</string>
   <key>CFBundlePackageType</key><string>APPL</string>
@@ -94,7 +94,7 @@ cat > "$contents/Info.plist" <<PLIST
   <key>LSMinimumSystemVersion</key><string>14.0</string>
   <key>NSHighResolutionCapable</key><true/>
   <key>NSPrincipalClass</key><string>NSApplication</string>
-  <key>NSLocalNetworkUsageDescription</key><string>HVN UltraViewer connects directly to computers on your local network when that is faster than the relay.</string>
+  <key>NSLocalNetworkUsageDescription</key><string>HVN Remote Hub connects directly to computers on your local network when that is faster than the relay.</string>
   <key>NSHumanReadableCopyright</key><string>© 2026 HVN GROUP · hvn.vn</string>
 </dict>
 </plist>

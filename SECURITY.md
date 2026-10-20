@@ -12,10 +12,10 @@ Không gửi kèm dữ liệu nội bộ, dữ liệu khách hàng, ID đối t�
 ## App xử lý dữ liệu thế nào
 
 - **Mật khẩu đối tác** chỉ lưu khi người dùng chọn ghi nhớ, và chỉ trong Keychain của macOS (service
-  `vn.hvn.ultraviewer.partner`). Không bao giờ ghi vào UserDefaults, lịch sử hay hồ sơ đăng ký.
+  `vn.hvn.remotehub.partner`). Không bao giờ ghi vào UserDefaults, lịch sử hay hồ sơ đăng ký.
 - **Lịch sử kết nối** chỉ lưu ID đối tác đã kết nối thành công (tắt được trong Cài đặt).
 - **Hồ sơ cài đặt** (định danh thiết bị dùng để đăng ký với máy chủ UltraViewer) nằm trong
-  `~/Library/Application Support/HVN UltraViewer/`, thư mục quyền `0700`.
+  `~/Library/Application Support/HVN Remote Hub/`, thư mục quyền `0700`.
 - **Ảnh chụp và video** chỉ tạo khi người dùng bấm, lưu trên máy.
 - **Không có telemetry.** App không gửi dữ liệu nào tới HVN GROUP.
 

@@ -102,3 +102,13 @@ Better approaches: none — B và C tốn hơn mà không thêm giá trị cho n
 ---
 
 HVN GROUP · hvn.vn
+
+## Nhật ký quyết định
+
+- **2026-10-20 — đổi tên trước khi phát hành 1.0.0.** Sau báo cáo
+  [research-261020-1221-universal-remote-feasibility.md](research-261020-1221-universal-remote-feasibility.md), chủ sản
+  phẩm chọn tên **HVN Remote Hub** (bundle ID `vn.hvn.remotehub`, module `HVNRemoteHub`, file phát hành
+  `HVNRemoteHub-*.dmg`), thay cho "HVN UltraViewer". Tên mới không chứa thương hiệu bên thứ ba (giảm rủi ro 1 ở trên) và
+  hợp với hướng đa nền tảng. Phạm vi 1.0.0 giữ nguyên; phần hub (danh bạ đa nền, mở TeamViewer/AnyDesk/RDP/VNC) để
+  sang 1.1.0. Giao thức riêng của HVN (tham khảo RustDesk) và các bản Windows/iOS/Android lập kế hoạch tại
+  [../261020-1227-hvn-protocol-multiplatform/plan.md](../261020-1227-hvn-protocol-multiplatform/plan.md).

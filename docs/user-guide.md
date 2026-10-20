@@ -1,22 +1,22 @@
-# Hướng dẫn sử dụng HVN UltraViewer for Mac
+# Hướng dẫn sử dụng HVN Remote Hub for Mac
 
-HVN UltraViewer giúp bạn **điều khiển một máy tính đang chạy UltraViewer** ngay trên Mac, hoặc **chia sẻ máy Mac này**
+HVN Remote Hub giúp bạn **điều khiển một máy tính đang chạy UltraViewer** ngay trên Mac, hoặc **chia sẻ máy Mac này**
 cho người hỗ trợ sau khi bạn duyệt. Giao diện mặc định là tiếng Việt.
 
-> HVN UltraViewer là bản triển khai độc lập của HVN GROUP, không phải sản phẩm chính thức của UltraViewer. Chỉ kết nối
+> HVN Remote Hub do HVN GROUP phát triển; app kết nối được với UltraViewer nhưng không phải sản phẩm chính thức của UltraViewer. Chỉ kết nối
 > tới máy tính bạn được phép truy cập.
 
 ## 1. Cài đặt
 
-1. Tải file `HVNUltraViewer-<phiên bản>.dmg` từ trang
+1. Tải file `HVNRemoteHub-<phiên bản>.dmg` từ trang
    [Releases](https://github.com/hvngroup/mac-ultra-viewer/releases/latest).
 2. (Tuỳ chọn) Kiểm tra file tải về không bị thay đổi: đặt file `.sha256` cạnh file DMG rồi chạy
-   `shasum -a 256 -c HVNUltraViewer-<phiên bản>.dmg.sha256` — kết quả phải là `OK`.
-3. Mở file DMG, kéo **HVN UltraViewer** vào thư mục **Applications**.
+   `shasum -a 256 -c HVNRemoteHub-<phiên bản>.dmg.sha256` — kết quả phải là `OK`.
+3. Mở file DMG, kéo **HVN Remote Hub** vào thư mục **Applications**.
 4. Mở app lần đầu. Nếu macOS báo không mở được vì chưa xác minh nhà phát triển:
    - bấm **Done** (không bấm Move to Trash);
-   - mở **System Settings → Privacy & Security**, kéo xuống, bấm **Open Anyway** cạnh dòng HVN UltraViewer;
-   - hoặc mở Terminal và chạy `xattr -dr com.apple.quarantine "/Applications/HVN UltraViewer.app"`.
+   - mở **System Settings → Privacy & Security**, kéo xuống, bấm **Open Anyway** cạnh dòng HVN Remote Hub;
+   - hoặc mở Terminal và chạy `xattr -dr com.apple.quarantine "/Applications/HVN Remote Hub.app"`.
 
 Yêu cầu: macOS 14 Sonoma trở lên, máy Apple silicon hoặc Intel.
 
@@ -64,7 +64,7 @@ nối chỉ lưu ID, không bao giờ lưu mật khẩu. Xoá lịch sử hoặc
 ## 5. Cập nhật
 
 App tự kiểm tra bản mới trên GitHub Releases của HVN GROUP (tắt được trong Cài đặt), hoặc chọn
-**HVN UltraViewer → Kiểm tra bản cập nhật…**. Khi có bản mới, nút **Cập nhật lên …** hiện ở thanh tiêu đề:
+**HVN Remote Hub → Kiểm tra bản cập nhật…**. Khi có bản mới, nút **Cập nhật lên …** hiện ở thanh tiêu đề:
 
 - bản ký Developer ID: app tự tải, kiểm chữ ký, cài và mở lại;
 - bản ký ad-hoc (nội bộ): app tải file DMG về thư mục Downloads và mở ra; kéo app mới vào Applications để thay bản cũ.

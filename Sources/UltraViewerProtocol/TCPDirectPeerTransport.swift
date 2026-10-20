@@ -54,7 +54,7 @@ public actor TCPDirectPeerTransport {
 
     private let maximumPayloadLength: Int
     private let allowLoopbackForTesting: Bool
-    private let queue = DispatchQueue(label: "vn.hvn.ultraviewer.directPeer")
+    private let queue = DispatchQueue(label: "vn.hvn.remotehub.directPeer")
     private var listener: NWListener?
     private var identity = UUID()
     private var clients: [UUID: Client] = [:]

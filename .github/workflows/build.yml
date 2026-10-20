@@ -55,7 +55,7 @@ jobs:
         run: |
           . ./version.conf
           echo "APP_VERSION=$APP_VERSION" >> "$GITHUB_ENV"
-          echo "ASSET=HVNUltraViewer-$APP_VERSION" >> "$GITHUB_ENV"
+          echo "ASSET=HVNRemoteHub-$APP_VERSION" >> "$GITHUB_ENV"
           if [[ "$GITHUB_REF" == refs/tags/v* ]]; then
             if [ "${GITHUB_REF_NAME#v}" != "$APP_VERSION" ]; then
               echo "::error::Tag $GITHUB_REF_NAME does not match APP_VERSION $APP_VERSION in version.conf" >&2
@@ -115,8 +115,8 @@ jobs:
         if: steps.cert.outputs.identity != '' && steps.cert.outputs.identity != '-'
         run: |
           codesign --force --options runtime --timestamp \
-            --sign "${{ steps.cert.outputs.identity }}" "release/HVN UltraViewer.app"
-          codesign --verify --deep --strict --verbose=2 "release/HVN UltraViewer.app"
+            --sign "${{ steps.cert.outputs.identity }}" "release/HVN Remote Hub.app"
+          codesign --verify --deep --strict --verbose=2 "release/HVN Remote Hub.app"
 
       - name: Configure notarization
         id: notary
@@ -149,21 +149,21 @@ jobs:
       - name: Notarize app
         if: steps.notary.outputs.enabled == 'true'
         run: |
-          ditto -c -k --keepParent "release/HVN UltraViewer.app" "$RUNNER_TEMP/notarize.zip"
+          ditto -c -k --keepParent "release/HVN Remote Hub.app" "$RUNNER_TEMP/notarize.zip"
           xcrun notarytool submit "$RUNNER_TEMP/notarize.zip" --keychain-profile hvn-notary \
             --keychain "$RUNNER_TEMP/signing.keychain-db" --wait --timeout 30m
-          xcrun stapler staple "release/HVN UltraViewer.app"
+          xcrun stapler staple "release/HVN Remote Hub.app"
 
       - name: Verify bundle
-        run: scripts/verify-bundle.sh "release/HVN UltraViewer.app" arm64 x86_64
+        run: scripts/verify-bundle.sh "release/HVN Remote Hub.app" arm64 x86_64
 
       - name: Disk image, zip and checksums
         env:
           IDENTITY: ${{ steps.cert.outputs.identity }}
           NOTARIZED: ${{ steps.notary.outputs.enabled }}
         run: |
-          ditto -c -k --sequesterRsrc --keepParent "release/HVN UltraViewer.app" "release/$ASSET.zip"
-          scripts/make-dmg.sh "release/HVN UltraViewer.app" "release/$ASSET.dmg"
+          ditto -c -k --sequesterRsrc --keepParent "release/HVN Remote Hub.app" "release/$ASSET.zip"
+          scripts/make-dmg.sh "release/HVN Remote Hub.app" "release/$ASSET.dmg"
           if [ -n "$IDENTITY" ] && [ "$IDENTITY" != "-" ]; then
             codesign --force --timestamp --sign "$IDENTITY" "release/$ASSET.dmg"
             if [ "$NOTARIZED" = "true" ]; then

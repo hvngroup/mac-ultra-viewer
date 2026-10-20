@@ -14,7 +14,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 PAIRS = [
-    ROOT / "Sources" / "HVNUltraViewer" / "Resources" / "{}.lproj" / "Localizable.strings",
+    ROOT / "Sources" / "HVNRemoteHub" / "Resources" / "{}.lproj" / "Localizable.strings",
     ROOT / "Resources" / "InfoPlist" / "{}.lproj" / "InfoPlist.strings",
 ]
 ENTRY = re.compile(r'^"((?:[^"\\]|\\.)*)"\s*=\s*"((?:[^"\\]|\\.)*)";$')

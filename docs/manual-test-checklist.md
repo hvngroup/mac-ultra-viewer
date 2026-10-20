@@ -1,4 +1,4 @@
-# Checklist chạy thử trên Mac thật — HVN UltraViewer {{phiên bản}}
+# Checklist chạy thử trên Mac thật — HVN Remote Hub {{phiên bản}}
 
 Người chạy: ______ · Máy: ______ (chip, macOS) · Ngày: ______
 Bản build: link artifact hoặc Release ______
@@ -38,9 +38,9 @@ Máy đối tác: ______ (Windows + UltraViewer phiên bản ______)
 
 - [ ] Giao diện tiếng Việt mặc định ở lần mở đầu, kể cả thanh menu.
 - [ ] Cài đặt (⌘,) → English → cửa sổ đổi ngay; **Khởi động lại ngay** → thanh menu tiếng Anh. Đổi lại Tiếng Việt.
-- [ ] **Giới thiệu HVN UltraViewer**: đúng phiên bản/build, logo HVN GROUP rõ ở chế độ Sáng và Tối, link hvn.vn và
+- [ ] **Giới thiệu HVN Remote Hub**: đúng phiên bản/build, logo HVN GROUP rõ ở chế độ Sáng và Tối, link hvn.vn và
       kythuat@hvn.vn mở được, câu miễn trừ hiện đủ; **Giấy phép** mở thư mục giấy phép.
-- [ ] **Trợ giúp → Trợ giúp HVN UltraViewer** mở hướng dẫn; **Hướng dẫn trực tuyến**, **Website HVN GROUP**, **Gửi
+- [ ] **Trợ giúp → Trợ giúp HVN Remote Hub** mở hướng dẫn; **Hướng dẫn trực tuyến**, **Website HVN GROUP**, **Gửi
       email hỗ trợ kỹ thuật**, **Báo lỗi…** mở đúng đích.
 - [ ] Header cửa sổ chính có logo HVN GROUP, đổi đúng theo Sáng/Tối; nút chính màu đỏ brand.
 

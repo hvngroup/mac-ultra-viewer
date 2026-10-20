@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Package an app into a compressed disk image with an Applications shortcut.
 #
-# Usage: scripts/make-dmg.sh "release/HVN UltraViewer.app" release/HVNUltraViewer-1.0.0.dmg
+# Usage: scripts/make-dmg.sh "release/HVN Remote Hub.app" release/HVNRemoteHub-1.0.0.dmg
 set -euo pipefail
 
 app="${1:?usage: $0 <app> <output.dmg>}"

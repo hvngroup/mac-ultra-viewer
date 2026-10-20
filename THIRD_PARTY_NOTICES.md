@@ -2,17 +2,17 @@
 
 ## MacViewer
 
-HVN UltraViewer is based on [MacViewer](https://github.com/hvngroup/macviewer)
+HVN Remote Hub is based on [MacViewer](https://github.com/hvngroup/macviewer)
 (commit `f8d1b6529e673df3fe35fccdd4b65f7474e354b7`), copyright 2026 MacViewer
 contributors, under the MIT License. The protocol engine
 (`Sources/UltraViewerProtocol`), the application code it was derived from and
 their tests keep that notice in `LICENSE`. The packaging script copies
 `LICENSE` and this file into
-`HVN UltraViewer.app/Contents/Resources/Licenses/HVN UltraViewer/`.
+`HVN Remote Hub.app/Contents/Resources/Licenses/HVN Remote Hub/`.
 
 ## Zstandard
 
-HVN UltraViewer statically includes compression and decompression portions of
+HVN Remote Hub statically includes compression and decompression portions of
 [Zstandard 1.5.7](https://github.com/facebook/zstd/tree/v1.5.7), copyright Meta
 Platforms, Inc. and affiliates, under its BSD license. The source's alternative
 GPLv2 license is also preserved. Original notices are in

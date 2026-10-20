@@ -1,6 +1,6 @@
-# Plan — HVN UltraViewer for Mac v1.0.0
+# Plan — HVN Remote Hub for Mac v1.0.0
 
-- Trạng thái: **Phase 4 — chờ CI xanh** (Phase 0–3 xong)
+- Trạng thái: **Phase 4 — chờ CI xanh sau khi đổi tên thành HVN Remote Hub** (Cổng ③ phải chạy lại)
 - Phạm vi: [brainstorm-261020-0956-hvn-ultraviewer.md](../reports/brainstorm-261020-0956-hvn-ultraviewer.md) (Cổng ① đã chốt)
 - Nhánh: `claude/clever-turing-ns95e6` → PR nháp vào `main`
 
@@ -8,9 +8,9 @@
 |:-:|---|---|
 | 0–1 | Brief, chốt tên/bundle ID/phạm vi/ký số, tạo `main` | Xong |
 | 2 | Khung: `Package.swift`, `version.conf`, scripts, workflow Build, docs, CHANGELOG, SECURITY, mẫu GitHub | Xong |
-| 3 | Chuyển engine + app từ MacViewer; đổi định danh `vn.hvn.ultraviewer`; viết lại vỏ app (Launcher, menu, Giới thiệu, Trợ giúp, Cài đặt), tiếng Việt mặc định, brand (icon, logo, màu), kênh cập nhật HVN | Xong |
-| 4 | **Cổng ② CI**: `swift test`, đóng gói universal, `verify-bundle.sh`, DMG/zip/SHA-256 | Đang chờ |
-| 5 | **Cổng ③ Máy thật**: chủ sản phẩm chạy `docs/manual-test-checklist.md` | Chưa |
+| 3 | Chuyển engine + app từ MacViewer; đổi định danh `vn.hvn.remotehub`; viết lại vỏ app (Launcher, menu, Giới thiệu, Trợ giúp, Cài đặt), tiếng Việt mặc định, brand (icon, logo, màu), kênh cập nhật HVN | Xong |
+| 4 | **Cổng ② CI**: `swift test`, đóng gói universal, `verify-bundle.sh`, DMG/zip/SHA-256 | Xanh với tên cũ (run 39406947751); chờ chạy lại sau đổi tên |
+| 5 | **Cổng ③ Máy thật**: chủ sản phẩm chạy `docs/manual-test-checklist.md` | Đạt với tên cũ (2026-10-20); chạy lại với bản đổi tên |
 | 6 | **Cổng ④ Phát hành** v1.0.0: PR phát hành riêng, Release trên GitHub UI | Chưa |
 
 ## Tiêu chí nghiệm thu

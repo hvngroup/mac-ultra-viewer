@@ -1,8 +1,8 @@
 <div align="center">
 
-<img src="docs/images/app-icon.png" width="128" alt="Icon HVN UltraViewer">
+<img src="docs/images/app-icon.png" width="128" alt="Icon HVN Remote Hub">
 
-# HVN UltraViewer for Mac
+# HVN Remote Hub for Mac
 
 **Ứng dụng macOS gốc của HVN GROUP để điều khiển máy tính đang chạy UltraViewer, hoặc chia sẻ máy Mac của bạn.**
 
@@ -14,13 +14,13 @@
 
 ---
 
-HVN UltraViewer kết nối tới máy tính đang chạy [UltraViewer](https://ultraviewer.net) bằng ID và mật khẩu của máy đó,
+HVN Remote Hub kết nối tới máy tính đang chạy [UltraViewer](https://ultraviewer.net) bằng ID và mật khẩu của máy đó,
 và nhận kết nối tới máy Mac sau khi bạn duyệt. App viết bằng SwiftUI + AppKit trên một engine giao thức Swift/C; không
 dùng Wine và không chạy mã Windows nào.
 
 > [!IMPORTANT]
-> HVN UltraViewer là bản triển khai độc lập của HVN GROUP, **không** phải sản phẩm chính thức của UltraViewer và không
-> liên kết hay được nhà phát triển UltraViewer bảo trợ. "UltraViewer" là thương hiệu của chủ sở hữu tương ứng, chỉ dùng
+> HVN Remote Hub do HVN GROUP phát triển. App kết nối được với UltraViewer nhưng **không** phải sản phẩm chính thức của
+> UltraViewer, không liên kết hay được nhà phát triển UltraViewer bảo trợ. "UltraViewer" là thương hiệu của chủ sở hữu tương ứng, chỉ dùng
 > để nói rõ khả năng tương thích. Chỉ kết nối tới máy bạn được phép truy cập.
 
 ## Tính năng
@@ -48,16 +48,26 @@ dùng Wine và không chạy mã Windows nào.
 
 **Chưa hỗ trợ:** truyền file, micro/voice chat, âm thanh từ Mac, chia sẻ nhiều màn hình Mac, truy cập không cần duyệt.
 
+## Lộ trình
+
+| Bản | Nội dung |
+|---|---|
+| 1.0.0 | Kết nối và chia sẻ màn hình với máy chạy UltraViewer (macOS) |
+| 1.1.0 | Hub: một danh bạ máy, mở phiên TeamViewer, AnyDesk (client chính hãng), RDP và VNC |
+| 2.x | HVN Connect — giao thức và máy chủ riêng của HVN; bản Windows, Android, iOS |
+
+Kế hoạch chi tiết: [plans/261020-1227-hvn-protocol-multiplatform/plan.md](plans/261020-1227-hvn-protocol-multiplatform/plan.md).
+
 ## Cài đặt
 
-1. Tải `HVNUltraViewer-<phiên bản>.dmg` ở trang [Releases](https://github.com/hvngroup/mac-ultra-viewer/releases/latest).
-2. (Tuỳ chọn) So mã: `shasum -a 256 -c HVNUltraViewer-<phiên bản>.dmg.sha256`.
-3. Mở DMG, kéo **HVN UltraViewer** vào **Applications**.
+1. Tải `HVNRemoteHub-<phiên bản>.dmg` ở trang [Releases](https://github.com/hvngroup/mac-ultra-viewer/releases/latest).
+2. (Tuỳ chọn) So mã: `shasum -a 256 -c HVNRemoteHub-<phiên bản>.dmg.sha256`.
+3. Mở DMG, kéo **HVN Remote Hub** vào **Applications**.
 4. Bản ký ad-hoc bị Gatekeeper chặn ở lần mở đầu: bấm **Done**, vào **System Settings → Privacy & Security →
    Open Anyway**. Hoặc chạy:
 
    ```sh
-   xattr -dr com.apple.quarantine "/Applications/HVN UltraViewer.app"
+   xattr -dr com.apple.quarantine "/Applications/HVN Remote Hub.app"
    ```
 
 Chi tiết từng bước: [docs/user-guide.md](docs/user-guide.md).
@@ -78,8 +88,8 @@ Cần macOS 14+ và Xcode 16+ (Swift 6).
 
 ```sh
 swift test                          # chạy toàn bộ test
-scripts/package-app.sh release      # tạo "release/HVN UltraViewer.app"
-open "release/HVN UltraViewer.app"
+scripts/package-app.sh release      # tạo "release/HVN Remote Hub.app"
+open "release/HVN Remote Hub.app"
 ```
 
 ## Quyền riêng tư

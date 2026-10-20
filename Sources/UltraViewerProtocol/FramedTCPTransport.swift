@@ -43,7 +43,7 @@ public actor FramedTCPTransport {
     private var frames: AsyncThrowingStream<Data, any Swift.Error>.Continuation?
     private var identity = UUID()
     private var ready = false
-    private let queue = DispatchQueue(label: "vn.hvn.ultraviewer.tcp")
+    private let queue = DispatchQueue(label: "vn.hvn.remotehub.tcp")
     private let maximumPayloadLength: Int
     /// Latest opened stream's HTTP status, retained after close for diagnostics.
     public private(set) var receivedHTTPStatusCode: Int?

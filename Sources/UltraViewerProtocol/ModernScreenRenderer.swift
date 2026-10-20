@@ -385,7 +385,7 @@ public final class ModernScreenRenderer {
                     let sourceX = try Self.product(sourceColumn, tileSize)
                     guard tileWidth <= atlas.width, tileHeight <= atlas.height,
                           sourceX <= atlas.width - tileWidth, sourceY <= atlas.height - tileHeight else {
-                        Logger(subsystem: "vn.hvn.ultraviewer", category: "screen").error(
+                        Logger(subsystem: "vn.hvn.remotehub", category: "screen").error(
                             "Atlas bounds: atlas=\(atlas.width)x\(atlas.height) tile=\(self.tileSize) source=\(sourceX),\(sourceY) size=\(tileWidth)x\(tileHeight) rectangle=\(rectangle.x),\(rectangle.y),\(rectangle.width),\(rectangle.height)")
                         throw ModernScreenMessageError.auxiliaryAtlasOutOfBounds
                     }
