@@ -16,10 +16,16 @@ final class MacPermissionsSetupWindowController: NSWindowController, NSWindowDel
             }
         }
 
+        /// macOS lists an app under Screen Recording or Accessibility only after
+        /// it has asked once, so ask before opening the pane.
         @MainActor func openSettings() {
             switch self {
-            case .screenRecording: MacHostingPermissions.openScreenRecordingSettings()
-            case .accessibility: MacHostingPermissions.openAccessibilitySettings()
+            case .screenRecording:
+                MacHostingPermissions.requestScreenRecording()
+                MacHostingPermissions.openScreenRecordingSettings()
+            case .accessibility:
+                MacHostingPermissions.requestAccessibility()
+                MacHostingPermissions.openAccessibilitySettings()
             }
         }
     }
@@ -120,6 +126,12 @@ private struct MacPermissionsSetupGuide: View {
             && FileManager.default.fileExists(atPath: appURL.path)
     }
 
+    /// A copy opened from the disk image or from Downloads (App Translocation)
+    /// gets permissions that are lost once it moves to Applications.
+    private var runsOutsideApplications: Bool {
+        appURL.path.contains("/AppTranslocation/") || appURL.path.hasPrefix("/Volumes/")
+    }
+
     var body: some View {
         ScrollView {
         VStack(alignment: .leading, spacing: 20) {
@@ -127,6 +139,13 @@ private struct MacPermissionsSetupGuide: View {
                 Text("Allow access to this Mac").font(.title2.weight(.semibold))
                 Text("Screen Recording shares your display. Accessibility allows keyboard and mouse control.")
                     .foregroundStyle(.secondary).fixedSize(horizontal: false, vertical: true)
+            }
+
+            if runsOutsideApplications {
+                Label("Move HVN Remote Hub to the Applications folder and open it from there before granting permissions.",
+                      systemImage: "exclamationmark.triangle.fill")
+                    .font(.callout).foregroundStyle(.orange)
+                    .fixedSize(horizontal: false, vertical: true)
             }
 
             VStack(alignment: .leading, spacing: 12) {
