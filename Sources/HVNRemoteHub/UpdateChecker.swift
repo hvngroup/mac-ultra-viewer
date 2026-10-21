@@ -24,7 +24,10 @@ final class UpdateChecker: ObservableObject {
 
     static let automaticKey = "HVNRemoteHub.checkForUpdates"
     static let lastCheckKey = "HVNRemoteHub.lastUpdateCheck"
-    static let latestReleaseURL = URL(string: "https://api.github.com/repos/hvngroup/mac-ultra-viewer/releases/latest")!
+    static let releasesURL = URL(string: "https://api.github.com/repos/hvngroup/universal-remote-hub/releases?per_page=50")!
+    /// The repository also publishes HVN Remote Hub 2.0 under plain vX.Y.Z tags;
+    /// only releases tagged with this prefix are this app's.
+    nonisolated static let tagPrefix = "mac-v"
 
     @Published private(set) var state = State.idle
     /// Set when the user asked for the check, or an install failed, so the result is shown.
@@ -74,11 +77,11 @@ final class UpdateChecker: ObservableObject {
         task = Task {
             defer { task = nil }
             do {
-                var request = URLRequest(url: Self.latestReleaseURL, timeoutInterval: 15)
+                var request = URLRequest(url: Self.releasesURL, timeoutInterval: 15)
                 request.setValue("application/vnd.github+json", forHTTPHeaderField: "Accept")
                 let (data, response) = try await URLSession.shared.data(for: request)
                 guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw URLError(.badServerResponse) }
-                let release = try Self.parseRelease(data)
+                let release = try Self.parseLatestRelease(data)
                 defaults.set(Date(), forKey: Self.lastCheckKey)
                 state = Self.isVersion(release.version, newerThan: currentVersion) ? .available(release) : .upToDate
             } catch {
@@ -133,7 +136,8 @@ final class UpdateChecker: ObservableObject {
         }
     }
 
-    nonisolated static func parseRelease(_ data: Data) throws -> Release {
+    /// The newest published release tagged `mac-v…` in a GitHub releases list.
+    nonisolated static func parseLatestRelease(_ data: Data) throws -> Release {
         struct Payload: Decodable {
             struct Asset: Decodable { let name: String; let browser_download_url: URL }
             let tag_name: String
@@ -143,13 +147,16 @@ final class UpdateChecker: ObservableObject {
             let prerelease: Bool?
             let assets: [Asset]
         }
-        let payload = try JSONDecoder().decode(Payload.self, from: data)
-        guard payload.draft != true, payload.prerelease != true else { throw URLError(.cannotParseResponse) }
-        let version = payload.tag_name.hasPrefix("v") ? String(payload.tag_name.dropFirst()) : payload.tag_name
-        let dmg = payload.assets.first { $0.name.hasPrefix("HVNRemoteHub-") && $0.name.hasSuffix(".dmg") }
-        guard dmg.map({ $0.browser_download_url.host == "github.com" }) ?? true else { throw URLError(.cannotParseResponse) }
-        return Release(version: version, pageURL: payload.html_url, dmgURL: dmg?.browser_download_url,
-                       notes: releaseNotes(payload.body ?? ""))
+        let releases = try JSONDecoder().decode([Payload].self, from: data).compactMap { payload -> Release? in
+            guard payload.draft != true, payload.prerelease != true, payload.tag_name.hasPrefix(tagPrefix) else { return nil }
+            let dmg = payload.assets.first { $0.name.hasPrefix("HVNRemoteHub-") && $0.name.hasSuffix(".dmg") }
+            guard dmg.map({ $0.browser_download_url.host == "github.com" }) ?? true else { return nil }
+            return Release(version: String(payload.tag_name.dropFirst(tagPrefix.count)), pageURL: payload.html_url,
+                           dmgURL: dmg?.browser_download_url, notes: releaseNotes(payload.body ?? ""))
+        }
+        guard let newest = releases.max(by: { isVersion($1.version, newerThan: $0.version) })
+        else { throw URLError(.cannotParseResponse) }
+        return newest
     }
 
     /// Release notes without the "## Install" section the release page shows to new users.

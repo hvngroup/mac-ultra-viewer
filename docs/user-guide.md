@@ -9,7 +9,7 @@ cho người hỗ trợ sau khi bạn duyệt. Giao diện mặc định là ti�
 ## 1. Cài đặt
 
 1. Tải file `HVNRemoteHub-<phiên bản>.dmg` từ trang
-   [Releases](https://github.com/hvngroup/mac-ultra-viewer/releases/latest).
+   [Releases](https://github.com/hvngroup/universal-remote-hub/releases), trong bản mới nhất có tag `mac-v…` (các bản tag `v…` là HVN Remote Hub 2.0).
 2. (Tuỳ chọn) Kiểm tra file tải về không bị thay đổi: đặt file `.sha256` cạnh file DMG rồi chạy
    `shasum -a 256 -c HVNRemoteHub-<phiên bản>.dmg.sha256` — kết quả phải là `OK`.
 3. Mở file DMG, kéo **HVN Remote Hub** vào thư mục **Applications**.

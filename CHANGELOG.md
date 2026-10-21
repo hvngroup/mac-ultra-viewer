@@ -16,6 +16,8 @@ Khi phát hành, workflow **Build** lấy đúng mục của phiên bản tươn
 - Nâng cấp từ 1.0.0 (ký ad-hoc): bấm **Cập nhật lên 1.0.1**, app tải file DMG về Downloads; kéo app mới vào Applications
   để thay bản cũ, rồi cấp lại quyền Ghi màn hình và Trợ năng một lần vì chữ ký của app đã đổi.
 - Hướng dẫn cài đặt (trong app và README) cập nhật theo bản đã ký.
+- App kiểm tra cập nhật ở repo chung `hvngroup/universal-remote-hub` và chỉ nhận các bản có tag `mac-v…`, vì repo này
+  còn phát hành HVN Remote Hub 2.0. Liên kết báo lỗi và hướng dẫn trực tuyến cũng chuyển sang repo chung.
 
 ## [1.0.0] - 2026-10-20
 

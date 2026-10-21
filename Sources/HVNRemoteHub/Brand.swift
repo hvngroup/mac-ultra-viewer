@@ -12,11 +12,11 @@ enum Brand {
     static let website = "hvn.vn"
     static let supportEmail = "kythuat@hvn.vn"
     static let hotline = "024.9999.7777"
-    static let repository = "hvngroup/mac-ultra-viewer"
+    static let repository = "hvngroup/universal-remote-hub"
     static let websiteURL = URL(string: "https://hvn.vn")!
     static let supportMailURL = URL(string: "mailto:kythuat@hvn.vn?subject=HVN%20Remote%20Hub")!
-    static let issuesURL = URL(string: "https://github.com/hvngroup/mac-ultra-viewer/issues/new/choose")!
-    static let onlineGuideURL = URL(string: "https://github.com/hvngroup/mac-ultra-viewer/blob/main/docs/user-guide.md")!
+    static let issuesURL = URL(string: "https://github.com/hvngroup/universal-remote-hub/issues/new/choose")!
+    static let onlineGuideURL = URL(string: "https://github.com/hvngroup/universal-remote-hub/blob/master/macos-native/docs/user-guide.md")!
 
     static let disclaimer = "HVN Remote Hub is made by HVN GROUP. It works with UltraViewer but is not an official UltraViewer product and is not affiliated with or endorsed by the UltraViewer developers."
 
