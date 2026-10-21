@@ -3,7 +3,7 @@
 ## Báo lỗ hổng
 
 Vui lòng **không mở issue công khai**. Gửi riêng tới **kythuat@hvn.vn** hoặc qua
-[GitHub Security Advisories](https://github.com/hvngroup/mac-ultra-viewer/security/advisories/new), kèm phiên bản bị
+[GitHub Security Advisories](https://github.com/hvngroup/universal-remote-hub/security/advisories/new), kèm phiên bản bị
 ảnh hưởng và các bước tái hiện. HVN GROUP phản hồi trong vài ngày làm việc và ghi công người báo trong release notes
 nếu anh/chị muốn.
 

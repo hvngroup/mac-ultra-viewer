@@ -6,7 +6,7 @@
 
 **Ứng dụng macOS gốc của HVN GROUP để điều khiển máy tính đang chạy UltraViewer, hoặc chia sẻ máy Mac của bạn.**
 
-[![Build](https://github.com/hvngroup/mac-ultra-viewer/actions/workflows/build.yml/badge.svg)](https://github.com/hvngroup/mac-ultra-viewer/actions/workflows/build.yml)
+[![Build](https://github.com/hvngroup/universal-remote-hub/actions/workflows/macos-native.yml/badge.svg)](https://github.com/hvngroup/universal-remote-hub/actions/workflows/macos-native.yml)
 ![macOS 14+](https://img.shields.io/badge/macOS-14%2B-lightgrey)
 ![Swift 6](https://img.shields.io/badge/Swift-6-orange)
 
@@ -43,7 +43,7 @@ dùng Wine và không chạy mã Windows nào.
 **Chung**
 - Giao diện **tiếng Việt mặc định**; đổi sang English hoặc theo hệ thống trong Cài đặt (⌘,).
 - Cửa sổ Giới thiệu, menu Trợ giúp, liên hệ hỗ trợ kythuat@hvn.vn.
-- Tự kiểm tra bản mới trên [GitHub Releases](https://github.com/hvngroup/mac-ultra-viewer/releases).
+- Tự kiểm tra bản mới trên [GitHub Releases](https://github.com/hvngroup/universal-remote-hub/releases) (các bản có tag `mac-v…`).
 - Universal binary (Apple silicon + Intel), macOS 14 Sonoma trở lên.
 
 **Chưa hỗ trợ:** truyền file, micro/voice chat, âm thanh từ Mac, chia sẻ nhiều màn hình Mac, truy cập không cần duyệt.
@@ -59,7 +59,7 @@ Kế hoạch chi tiết: [plans/261020-1227-hvn-protocol-multiplatform/plan.md](
 
 ## Cài đặt
 
-1. Tải `HVNRemoteHub-<phiên bản>.dmg` ở trang [Releases](https://github.com/hvngroup/mac-ultra-viewer/releases/latest).
+1. Tải `HVNRemoteHub-<phiên bản>.dmg` ở trang [Releases](https://github.com/hvngroup/universal-remote-hub/releases), trong bản mới nhất có tag `mac-v…`.
 2. (Tuỳ chọn) So mã: `shasum -a 256 -c HVNRemoteHub-<phiên bản>.dmg.sha256`.
 3. Mở DMG, kéo **HVN Remote Hub** vào **Applications**.
 4. Mở app. Từ bản 1.0.1, app được ký Developer ID và notarize nên mở bình thường. Bản 1.0.0 (ký ad-hoc) bị

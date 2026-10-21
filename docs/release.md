@@ -8,8 +8,9 @@
    - `version.conf`: `APP_VERSION=X.Y.Z`, `APP_BUILD` tăng 1;
    - chạy thử `scripts/release-notes.sh X.Y.Z`.
 2. CI xanh → chủ sản phẩm merge vào `main`.
-3. **Sau khi merge**, chủ sản phẩm tạo Release trên GitHub: *Releases → Draft a new release* → tag mới `vX.Y.Z`,
-   target **`main`**, để trống mô tả, không bấm "Generate release notes" → **Publish**.
+3. **Sau khi merge**, chủ sản phẩm tạo Release trên GitHub: *Releases → Draft a new release* → tag mới `mac-vX.Y.Z`,
+   target **`master`**, để trống mô tả, không bấm "Generate release notes" → **Publish**. Tag `vX.Y.Z` (không có `mac-`)
+   là của HVN Remote Hub 2.0, xem [docs/HVN-RELEASE.md](../../docs/HVN-RELEASE.md).
 4. Workflow của tag: kiểm tag khớp `APP_VERSION` → test → đóng gói → (ký Developer ID + notarize nếu có secrets) →
    kiểm tra bundle → đính kèm `HVNRemoteHub-X.Y.Z.dmg`, `.zip`, `.sha256`, `SHA256SUMS.txt` và mô tả từ CHANGELOG.
 5. Kiểm tra Release: tag trỏ đúng commit merge; đủ file; `shasum -a 256 -c SHA256SUMS.txt` khớp; `Info.plist` trong zip
@@ -20,8 +21,12 @@ Sửa/đăng lại Release cũ không dời tag và không chạy lại workflow
 
 ## Tên file và cập nhật trong app
 
-`UpdateChecker` đọc `https://api.github.com/repos/hvngroup/mac-ultra-viewer/releases/latest`, bỏ qua bản nháp/pre-release
-và chọn file `HVNRemoteHub-*.dmg` tải từ `github.com`. Giữ đúng tên file này, nếu không app sẽ chỉ mở trang Release.
+`UpdateChecker` (từ 1.0.1) đọc danh sách `https://api.github.com/repos/hvngroup/universal-remote-hub/releases`, chỉ xét
+các bản có tag `mac-v…`, bỏ qua bản nháp/pre-release, lấy phiên bản cao nhất và chọn file `HVNRemoteHub-*.dmg` tải từ
+`github.com`. Giữ đúng tên file này, nếu không app sẽ chỉ mở trang Release.
+
+Bản 1.0.0 vẫn đọc `releases/latest` của repo cũ `hvngroup/mac-ultra-viewer`, nên 1.0.1 được phát hành ở repo cũ (tag
+`v1.0.1`) trước khi repo đó được lưu trữ (archive). Từ 1.0.2 mọi bản chỉ phát hành ở repo chung.
 
 Repo phải **công khai** (hoặc Release công khai) để app của người dùng đọc được thông tin phiên bản.
 
